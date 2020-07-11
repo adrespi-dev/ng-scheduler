@@ -1,0 +1,23 @@
+<div class="calendar-wrapper" [ngClass]="animationType" *ngIf="!isAnimating">
+  <div class="calendar-days-header" role="row">
+    <div class="column-header" *ngFor="let day of daysOfWeek">
+      {{ day }}
+    </div>
+  </div>
+
+  <div class="calendar-days-body">
+    <div
+      class="day-row"
+      role="row"
+      *ngFor="let row of groupDataSource(dataSource)"
+    >
+      <div
+        class="day-cell-container"
+        app-day-cell
+        [dayData]="dayData"
+        role="cell"
+        *ngFor="let dayData of row"
+      ></div>
+    </div>
+  </div>
+</div>

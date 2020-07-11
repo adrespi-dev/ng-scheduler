@@ -1,0 +1,94 @@
+@import "variables";
+
+:host {
+  height: 100%;
+}
+
+.calendar-wrapper {
+  height: 100%;
+  width: 100%;
+
+  animation-duration: 198.1614349775785ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+
+  &.previous-month-transition {
+    animation-name: previous-month-anim;
+  }
+
+  &.next-month-transition {
+    animation-name: next-month-anim;
+  }
+}
+
+.calendar-days-header {
+  display: flex;
+  align-items: center;
+
+  .column-header {
+    height: 32px;
+    line-height: 32px;
+    background-color: $calendar-day-header-border-bg;
+    border-right: 1px solid $calendar-border-color;
+    flex: 1 1 0%;
+    text-align: center;
+    font-weight: 600;
+  }
+}
+
+.calendar-days-body {
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 32px);
+  border-top: 2px solid $calendar-border-color;
+
+  .day-row {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid $calendar-border-color;
+    display: flex;
+    flex: 1 1 0%;
+  }
+
+  .day-cell-container {
+    border-right: 1px solid $calendar-border-color;
+    flex: 1 1 0%;
+    position: relative;
+  }
+}
+
+@keyframes previous-month-anim {
+  0% {
+    transform: translateX(-42px);
+    opacity: 0%;
+  }
+
+  20% {
+    opacity: 70%;
+    transform: translateX(-30px);
+  }
+
+  100% {
+    transform: none;
+    opacity: 100%;
+  }
+}
+
+@keyframes next-month-anim {
+  0% {
+    transform: translateX(42px);
+    opacity: 0%;
+  }
+
+  20% {
+    opacity: 70%;
+    transform: translateX(30px);
+  }
+
+  100% {
+    transform: none;
+    opacity: 100%;
+  }
+}

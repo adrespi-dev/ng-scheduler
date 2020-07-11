@@ -1,3 +1,5 @@
+@import "variables";
+
 .app-header-wrapper {
   display: block;
   height: 64px;
@@ -9,9 +11,30 @@
   display: flex;
   align-items: center;
   height: 64px;
+  color: white;
+  background-color: $header-bg;
 }
 
 .app-header-branding {
   font-weight: 700;
   font-size: 1.25rem;
+  color: #ff7a59;
+}
+
+.app-header-today {
+  margin-left: 46px;
+}
+
+.app-header-btn-group {
+  margin-left: 26px;
+
+  button:hover {
+    background-color: #253342;
+  }
+}
+
+.app-header-month {
+  margin-left: 26px;
+  font-size: 18px;
+  font-weight: 700;
 }

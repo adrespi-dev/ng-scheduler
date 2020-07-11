@@ -1,0 +1,39 @@
+@import "variables";
+
+.day-cell {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: $calendar-cell-hover-bg;
+  }
+}
+
+.day-cell-header {
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+  opacity: 0.6;
+  border-top: 4px solid transparent;
+}
+
+.in-current-month {
+  .day-cell-header {
+    opacity: 1;
+  }
+}
+
+.is-today {
+  .day-cell-header {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+}
+
+.is-weekend {
+  background: $calendar-cell-weekend-bg;
+}

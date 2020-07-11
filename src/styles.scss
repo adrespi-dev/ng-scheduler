@@ -1,4 +1,7 @@
+@import "./styles/variables";
 @import "./styles/material_setup";
+@import "./styles/material_overrides";
+@import "./styles/buttons";
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -9,7 +12,10 @@ body {
 body {
   margin: 0;
   font-family: "Montserrat", "Helvetica Neue", sans-serif;
+  // font-family: "IBM Plex Sans", sans-serif;
+
   color: rgb(23, 43, 77);
+  color: #33475b;
   font-size: 14px;
   font-weight: 500;
 }

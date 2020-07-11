@@ -1,0 +1,29 @@
+/**
+ Buttons overrides
+*/
+.mat-button,
+.mat-raised-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-fab,
+.mat-mini-fab {
+  font-family: inherit;
+}
+
+.mat-stroked-button:not([disabled]) {
+  border-color: $border-color;
+  font-weight: 600;
+  // background-color: #eaf0f6;
+  // border-color: #cbd6e2;
+}
+
+.mat-icon-button {
+  .mat-button-wrapper {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: -4px;
+  }
+}

@@ -3,5 +3,29 @@
     <div class="app-header-branding">
       Demo Calendar
     </div>
+
+    <div class="app-header-today">
+      <button
+        class="btn btn-with-icon"
+        mat-stroked-button
+        (click)="handleTodayClick()"
+      >
+        <div>Today</div>
+        <i-feather name="calendar"></i-feather>
+      </button>
+    </div>
+
+    <div class="app-header-btn-group">
+      <button mat-icon-button (click)="handlePrevClick()">
+        <i-feather name="arrow-left"></i-feather>
+      </button>
+      <button mat-icon-button (click)="handleNextClick()">
+        <i-feather name="arrow-right"></i-feather>
+      </button>
+    </div>
+
+    <div class="app-header-month">
+      {{ (cdService.currentDate$ | async | date: "MMM yyyy") || "Loading.." }}
+    </div>
   </div>
 </header>
