@@ -3,26 +3,20 @@
   [class.in-current-month]="dayData.dayInCurrentMonth"
   [class.is-weekend]="dayData.isWeekend"
   [class.is-today]="dayData.isCurrentDay"
-  [matMenuTriggerFor]="menu"
+  (click)="handleCellClick()"
 >
   <div class="day-cell-header">
     {{
       dayData.dateTime | date: (getDay(dayData.dateTime) == 1 ? "d MMM" : "d")
     }}
   </div>
+  <div class="day-cell-body">
+    <div
+      class="day-cell-new-reminder"
+      [class.calendar-hide]="!isEditing"
+      #newReminder
+    >
+      (No title)
+    </div>
+  </div>
 </div>
-
-<mat-menu #menu="matMenu" xPosition="after">
-  <button mat-menu-item>
-    <!-- <mat-icon>dialpad</mat-icon> -->
-    <span>Redial</span>
-  </button>
-  <button mat-menu-item disabled>
-    <!-- <mat-icon>voicemail</mat-icon> -->
-    <span>Check voice mail</span>
-  </button>
-  <button mat-menu-item>
-    <!-- <mat-icon>notifications_off</mat-icon> -->
-    <span>Disable alerts</span>
-  </button>
-</mat-menu>

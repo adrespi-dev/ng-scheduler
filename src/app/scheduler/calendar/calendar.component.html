@@ -12,12 +12,30 @@
       *ngFor="let row of groupDataSource(dataSource)"
     >
       <div
-        class="day-cell-container"
         app-day-cell
-        [dayData]="dayData"
+        class="day-cell-container"
         role="cell"
+        [dayData]="dayData"
+        [isEditing]="dayData == editingDayData"
+        (cellClick)="handleDayCellClicked($event, dayData)"
         *ngFor="let dayData of row"
       ></div>
     </div>
   </div>
 </div>
+
+<!-- reminder creator popover -->
+<sat-popover
+  #reminderPopover
+  hasBackdrop
+  horizontalAlign="after"
+  verticalAlign="start"
+  [anchor]="editingDayCellRef"
+  (closed)="handledPopoverClosed()"
+>
+  <app-reminder-editor
+    *ngIf="reminderPopover.isOpen()"
+    [initialDate]="editingDayData?.dateTime"
+  ></app-reminder-editor>
+</sat-popover>
+<!-- reminder creator popover -->

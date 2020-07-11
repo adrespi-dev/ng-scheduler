@@ -1,11 +1,23 @@
 import { FeatherModule } from "angular-feather";
 import { NgModule } from "@angular/core";
-import { Calendar, ArrowLeft, ArrowRight } from "angular-feather/icons";
+import {
+  Calendar,
+  ArrowLeft,
+  ArrowRight,
+  ChevronDown,
+  Clock,
+  MapPin,
+  Tag,
+} from "angular-feather/icons";
 
 const icons = {
   Calendar,
   ArrowLeft,
   ArrowRight,
+  ChevronDown,
+  Clock,
+  MapPin,
+  Tag,
 };
 
 @NgModule({

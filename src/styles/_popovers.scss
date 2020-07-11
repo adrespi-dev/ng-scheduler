@@ -1,0 +1,14 @@
+.sat-popover-container {
+  border-radius: 3px;
+  box-shadow: 0 1px 24px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border: 1px solid #cbd6e2;
+
+  &.sat-popover-after {
+    margin-left: 12px;
+  }
+
+  &.sat-popover-before {
+    margin-right: 12px;
+  }
+}

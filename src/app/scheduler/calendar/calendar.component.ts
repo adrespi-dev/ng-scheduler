@@ -1,10 +1,18 @@
-import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  TemplateRef,
+  ViewChild,
+} from "@angular/core";
 import * as moment from "moment";
 import { CurrentDateService } from "../services/current-date.service";
 import { Subscription } from "rxjs";
 import DayData from "../models/day-data";
 import { CalendarDaysProviderService } from "../services/calendar-days-provider.service";
 import memoizee from "src/app/shared/utils/memoizee-decorator";
+import { SatPopover } from "@ncstate/sat-popover";
 
 @Component({
   selector: "[app-calendar]",
@@ -12,6 +20,8 @@ import memoizee from "src/app/shared/utils/memoizee-decorator";
   styleUrls: ["./calendar.component.scss"],
 })
 export class CalendarComponent implements OnInit, OnDestroy {
+  @ViewChild("reminderPopover") popOver: SatPopover;
+
   isAnimating = true;
   animationType: "next-month-transition" | "previous-month-transition" = null;
 
@@ -22,6 +32,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
   endOfMonth: moment.Moment;
 
   dataSource: DayData[] = [];
+  editingDayCellRef: any;
+  editingDayData: DayData;
 
   constructor(
     private provider: CalendarDaysProviderService,
@@ -59,6 +71,19 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   clearDataSource() {
     this.dataSource = [];
+  }
+
+  handleDayCellClicked(ref: any, dayData: DayData) {
+    this.editingDayCellRef = ref;
+    this.editingDayData = dayData;
+    setTimeout(() => {
+      this.popOver.open();
+    }, 50);
+  }
+
+  handledPopoverClosed() {
+    this.editingDayCellRef = null;
+    this.editingDayData = null;
   }
 
   /**

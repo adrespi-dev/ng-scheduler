@@ -27,3 +27,94 @@
     margin-top: -4px;
   }
 }
+
+.mat-flat-button {
+  font-weight: 600;
+  transition: all 0.2s ease-in;
+}
+
+/**
+  Inputs overrides
+*/
+.mat-form-field,
+.mat-select,
+.mat-input {
+  font-family: inherit;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: rgb(223, 227, 235);
+}
+.app-form {
+  .mat-form-field-appearance-standard .mat-form-field-flex {
+    padding-top: 0px;
+  }
+
+  .form-prop-control {
+    .mat-form-field-flex {
+      display: flex;
+      align-items: center;
+    }
+
+    .mat-form-field-suffix {
+      background-color: transparent;
+    }
+
+    .mat-form-field-underline {
+      opacity: 0;
+      bottom: 0px;
+      left: 0;
+    }
+
+    .mat-focused,
+    .mat-form-field-invalid {
+      .mat-form-field-underline {
+        opacity: 1;
+      }
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
+
+    .mat-form-field-infix {
+      padding: 12px 0;
+      border-top: 0px;
+    }
+
+    .mat-form-field-wrapper {
+      padding-left: 12px;
+      padding-right: 8px;
+      transition: background-color 0.2s ease-in;
+      border-radius: 4px;
+    }
+
+    .mat-form-field-suffix {
+      mat-datepicker-toggle {
+        .mat-icon-button {
+          height: 32px;
+          width: 32px;
+
+          .mat-button-wrapper {
+            line-height: 33px;
+            text-align: center;
+            justify-content: center;
+          }
+        }
+
+        i-feather {
+          margin-top: 0px;
+        }
+      }
+    }
+
+    mat-form-field {
+      &:hover,
+      &.mat-focused {
+        .mat-form-field-wrapper {
+          background-color: #f1f3f4;
+        }
+      }
+    }
+  }
+}

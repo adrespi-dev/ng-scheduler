@@ -1,0 +1,185 @@
+<div class="reminder-form-wrapper" [style.border-color]="color.value">
+  <form class="app-form" [formGroup]="reminderForm">
+    <div class="form-control title-control">
+      <mat-form-field appearance="standard">
+        <input
+          name="title"
+          formControlName="title"
+          #titleInput
+          matInput
+          maxlength="30"
+          autocomplete="off"
+          placeholder="Type a title for this reminder"
+          required
+        />
+        <mat-hint align="end">{{ titleInput.value.length }} / 30</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form-properties">
+      <div class="form-prop">
+        <i-feather class="form-prop-icon" name="clock"></i-feather>
+        <div class="form-prop-control">
+          <div class="prop-date-row">
+            <!-- BEGIN Date Field -->
+            <div class="form-control date-control">
+              <mat-form-field appearance="standard">
+                <input
+                  matInput
+                  placeholder="Date"
+                  name="date"
+                  formControlName="date"
+                  autocomplete="off"
+                  [matDatepicker]="picker"
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <i-feather
+                    name="calendar"
+                    matDatepickerToggleIcon
+                  ></i-feather>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <!-- END Date Field -->
+
+            <!-- BEGIN Time Field -->
+            <div class="form-control time-control">
+              <mat-form-field appearance="standard">
+                <input
+                  matInput
+                  placeholder="Time"
+                  name="time"
+                  formControlName="time"
+                  autocomplete="off"
+                  [matAutocomplete]="timeAutocomplete"
+                />
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  #timeAutocomplete="matAutocomplete"
+                >
+                  <mat-option
+                    *ngFor="let option of filteredTimeOptions | async"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+                <i-feather name="chevron-down" matSuffix></i-feather>
+              </mat-form-field>
+            </div>
+            <!-- END Time Field -->
+          </div>
+        </div>
+      </div>
+      <div class="form-prop">
+        <i-feather class="form-prop-icon" name="map-pin"></i-feather>
+        <div class="form-prop-control">
+          <!-- BEGIN City Field -->
+          <div class="form-control city-control">
+            <mat-form-field appearance="standard">
+              <input
+                matInput
+                placeholder="Type your city"
+                name="city"
+                formControlName="city"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </div>
+          <!-- END City Field -->
+        </div>
+      </div>
+      <div class="form-prop">
+        <i-feather class="form-prop-icon" name="tag"></i-feather>
+        <div class="form-prop-control">
+          <!-- BEGIN Color Field -->
+          <div class="form-control color-control">
+            <!-- Begin Default Color -->
+            <mat-form-field
+              appearance="standard"
+              *ngIf="!useCustomColor; else customColorField"
+            >
+              <mat-select
+                #defaultColorSelect
+                name="color"
+                formControlName="color"
+              >
+                <mat-select-trigger>
+                  <div class="default-color">
+                    <div
+                      class="default-color-circle"
+                      [style.background]="color.value"
+                    ></div>
+                    <div
+                      class="default-color-label"
+                      [style.color]="color.value"
+                    >
+                      {{ $any(defaultColorSelect.selected)?.viewValue }}
+                    </div>
+                  </div>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let color of defaultColors"
+                  [value]="color.value"
+                >
+                  <div class="default-color">
+                    <div
+                      class="default-color-circle"
+                      [style.background]="color.value"
+                    ></div>
+                    <div class="default-color-label">
+                      {{ color.label }}
+                    </div>
+                  </div>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- END Default Color -->
+
+            <!-- Begin Custom Color -->
+
+            <!-- (colorPickerChange)="color.setValue($event)" -->
+            <ng-template #customColorField>
+              <mat-form-field
+                [colorPicker]="color.value"
+                (colorPickerChange)="onColorChanged($event)"
+                appearance="standard"
+              >
+                <div class="custom-color">
+                  <div
+                    class="custom-color-circle"
+                    [style.background]="color.value"
+                  ></div>
+                  <input
+                    [value]="color.value"
+                    matInput
+                    placeholder="Choose a color"
+                    name="customColor"
+                    autocomplete="off"
+                  />
+                </div>
+              </mat-form-field>
+            </ng-template>
+            <!-- END Custom Color -->
+          </div>
+          <div class="color-checkbox">
+            <mat-checkbox
+              color="primary"
+              [checked]="useCustomColor"
+              (change)="onColorCheckboxChanged($event.checked)"
+              >Use custom color</mat-checkbox
+            >
+          </div>
+          <!-- END Color Field -->
+        </div>
+      </div>
+    </div>
+
+    <div class="form-submit">
+      <button mat-flat-button color="primary" [disabled]="!reminderForm.valid">
+        Save Reminder
+      </button>
+    </div>
+  </form>
+</div>

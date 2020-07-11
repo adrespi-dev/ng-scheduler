@@ -1,0 +1,34 @@
+.form-control {
+  width: 100%;
+  margin-bottom: 1.25rem;
+
+  textarea,
+  input {
+    width: 100%;
+    outline: none;
+    height: 40px;
+    border: none;
+    color: inherit;
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0 0 0 2px transparent inset, 0 0 0 1px #e0e0e0 inset;
+    box-shadow: 0 0 0 2px transparent inset, 0 0 0 1px #e0e0e0 inset;
+    margin: 0px;
+    border-radius: 5px;
+    padding: 0px 15px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border-color: #929292;
+    }
+
+    &:focus {
+      -webkit-box-shadow: 0 0 0 2px #1a73e8 inset, 0 0 0 1px #e0e0e0 inset;
+      box-shadow: 0 0 0 2px #1a73e8 inset, 0 0 0 1px #e0e0e0 inset;
+    }
+
+    &.ng-invalid.ng-dirty {
+      -webkit-box-shadow: 0 0 0 2px #ff5252 inset, 0 0 0 1px #e0e0e0 inset;
+      box-shadow: 0 0 0 2px #ff5252 inset, 0 0 0 1px #e0e0e0 inset;
+    }
+  }
+}

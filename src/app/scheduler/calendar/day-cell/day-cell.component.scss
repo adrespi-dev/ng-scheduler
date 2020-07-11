@@ -21,6 +21,10 @@
   border-top: 4px solid transparent;
 }
 
+.day-cell-body {
+  padding: 8px;
+}
+
 .in-current-month {
   .day-cell-header {
     opacity: 1;
@@ -36,4 +40,36 @@
 
 .is-weekend {
   background: $calendar-cell-weekend-bg;
+}
+
+.day-cell-new-reminder {
+  // border: 1px solid $calendar-border-color;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background-color: $primary-color;
+  color: white;
+
+  animation-duration: 198.1614349775785ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-name: editing-reminder;
+
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.2);
+
+  &.calendar-hide {
+    display: none;
+  }
+}
+
+@keyframes editing-reminder {
+  0% {
+    transform: translateX(-15px);
+    opacity: 0%;
+  }
+  100% {
+    transform: none;
+    opacity: 100%;
+  }
 }

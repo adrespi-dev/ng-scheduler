@@ -21,9 +21,11 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
+    "@ncstate/sat-popover": "^6.0.0",
     "angular-feather": "^6.0.10",
     "memoizee": "^0.4.14",
     "moment": "^2.27.0",
+    "ngx-color-picker": "^9.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
