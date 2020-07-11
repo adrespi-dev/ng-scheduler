@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { SchedulerComponent } from "./scheduler.component";
 
 const routes: Routes = [
   {
     path: "",
-    loadChildren: () =>
-      import("./scheduler/scheduler.module").then((m) => m.SchedulerModule),
+    component: SchedulerComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class SchedulerRoutingModule {}

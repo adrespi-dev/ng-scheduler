@@ -1,0 +1,17 @@
+.app-header-wrapper {
+  display: block;
+  height: 64px;
+}
+
+.app-header {
+  padding: 0.5rem;
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.app-header-branding {
+  font-weight: 700;
+  font-size: 1.25rem;
+}

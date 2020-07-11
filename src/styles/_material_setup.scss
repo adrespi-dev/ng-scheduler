@@ -1,0 +1,49 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$blue-palette: (
+  50: #e0eaf9,
+  100: #b3cbf0,
+  200: #80a9e6,
+  300: #4d86db,
+  400: #266cd4,
+  500: #0052cc,
+  600: #004bc7,
+  700: #0041c0,
+  800: #0038b9,
+  900: #0028ad,
+  A100: #d7ddff,
+  A200: #a4b3ff,
+  A400: #7188ff,
+  A700: #5872ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
+);
+
+$ng-scheduler-primary: mat-palette($blue-palette);
+$ng-scheduler-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$ng-scheduler-warn: mat-palette($mat-red);
+
+$ng-scheduler-theme: mat-light-theme(
+  $ng-scheduler-primary,
+  $ng-scheduler-accent,
+  $ng-scheduler-warn
+);
+
+@include angular-material-theme($ng-scheduler-theme);

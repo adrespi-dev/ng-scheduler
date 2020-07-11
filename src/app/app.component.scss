@@ -1,0 +1,13 @@
+@import "variables";
+
+.app-wrapper {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-body {
+  height: calc(100% - 64px);
+  display: flex;
+  border: 1px solid $border-color;
+}
