@@ -4,6 +4,7 @@ import { async } from "@angular/core/testing";
 import { RemindersService, ReminderDTO } from "./reminders.service";
 import { Observable } from "rxjs";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import getSeedData from "./reminders-seeder";
 
 describe("RemindersService", () => {
   let service: RemindersService;
@@ -29,7 +30,30 @@ describe("RemindersService", () => {
     expect(service).toBeTruthy();
   });
 
-  describe("createNewReminder()", () => {
+  describe("reminders", () => {
+    it("should return snapshot of the current list", () => {
+      const currentList = service.reminders;
+      const defaultReminders = getSeedData();
+
+      expect(currentList.length).toBe(defaultReminders.length);
+    });
+  });
+
+  describe("reminders$", () => {
+    it("should return an observable with that returns the current list", (done) => {
+      const currentList = service.reminders;
+      const reminder = getDefaultReminder();
+
+      service.createNewReminder(reminder).subscribe((_) => {
+        service.reminders$.subscribe((remindersAfterUpdate) => {
+          expect(remindersAfterUpdate.length).toBe(currentList.length + 1);
+          done();
+        });
+      });
+    });
+  });
+
+  describe("createNewReminder", () => {
     it("should throw error if a required prop is empty", () => {
       const requiredProps = ["title", "date", "time", "city", "color"];
 
@@ -87,7 +111,7 @@ describe("RemindersService", () => {
     });
   });
 
-  describe("updateReminder()", () => {
+  describe("updateReminder", () => {
     it("should throw error if a required prop is empty", () => {
       const requiredProps = ["title", "date", "time", "city", "color"];
       const reminderToUpdate = service.reminders[0];
@@ -150,6 +174,34 @@ describe("RemindersService", () => {
 
         const createdReminder = reminders[0];
         expect(createdReminder.isLoadingForecast).toBe(true);
+
+        done();
+      });
+    });
+  });
+
+  describe("deleteReminders", () => {
+    it("should return an observable", () => {
+      const reminderToDelete = service.reminders[0];
+
+      expect(service.deleteReminders([reminderToDelete.id])).toBeInstanceOf(
+        Observable
+      );
+    });
+
+    it("should delete reminders from the list", (done) => {
+      const currentList = service.reminders;
+      const idsToDelete = [currentList[0].id, currentList[1].id];
+
+      service.deleteReminders(idsToDelete).subscribe((_) => {
+        const listAfterDeletes = service.reminders;
+        console.log(listAfterDeletes);
+        expect(listAfterDeletes.length).toBe(currentList.length - 2);
+
+        idsToDelete.forEach((deleteId) => {
+          const reminderFound = listAfterDeletes.find((r) => r.id == deleteId);
+          expect(reminderFound).toBeUndefined();
+        });
 
         done();
       });

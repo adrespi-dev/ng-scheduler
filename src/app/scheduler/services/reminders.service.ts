@@ -1,5 +1,5 @@
-import { Injectable, NgZone } from "@angular/core";
-import { Observable, BehaviorSubject, Subject } from "rxjs";
+import { Injectable } from "@angular/core";
+import { Observable, BehaviorSubject } from "rxjs";
 import * as moment from "moment";
 import Reminder from "../models/reminder";
 import { WeatherForecastService } from "./weather-forecast.service";
@@ -37,7 +37,6 @@ export class RemindersService {
       const sortingById = a.id - b.id;
       return sortingByDate || sortingById;
     });
-    console.log(sorted);
     this._reminders$.next(sorted);
   }
 

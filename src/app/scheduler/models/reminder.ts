@@ -15,7 +15,8 @@ export default class Reminder {
     public city: string,
     public color: string
   ) {
-    this.id = new Date().getTime();
+    const hash = Math.floor(Math.random() * (1000 - 0 + 1)) + 0;
+    this.id = new Date().getTime() + hash;
     this.date = dateTime.toDate();
     this.loadWeatherData();
   }

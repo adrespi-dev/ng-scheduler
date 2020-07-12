@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ColorsFilterComponent } from './colors-filter.component';
+import { ColorsFilterComponent } from "./colors-filter.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-describe('ColorsFilterComponent', () => {
+describe("ColorsFilterComponent", () => {
   let component: ColorsFilterComponent;
   let fixture: ComponentFixture<ColorsFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ColorsFilterComponent ]
-    })
-    .compileComponents();
+      declarations: [ColorsFilterComponent],
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('ColorsFilterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
