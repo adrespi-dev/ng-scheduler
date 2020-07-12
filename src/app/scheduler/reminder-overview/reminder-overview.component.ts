@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import Reminder from "../models/reminder";
 import DayData from "../models/day-data";
+import { RemindersService } from "../services/reminders.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-reminder-overview",
@@ -18,7 +20,10 @@ export class ReminderOverviewComponent implements OnInit {
   initialDate: Date;
   isNewReminder = false;
 
-  constructor() {}
+  constructor(
+    private remindersService: RemindersService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.isNewReminder = this.dayData != null;
@@ -28,5 +33,15 @@ export class ReminderOverviewComponent implements OnInit {
     }
   }
 
-  handleDeleteReminder() {}
+  handleDeleteReminder() {
+    const _confirm = confirm("Are you sure you want to delete this reminder?");
+    if (!_confirm) return;
+
+    this.remindersService.deleteReminders([this.reminder.id]).subscribe((_) => {
+      this.snackBar.open("Reminder deleted successfully", "Ok", {
+        duration: 2000,
+      });
+      this.closePopover.emit();
+    });
+  }
 }

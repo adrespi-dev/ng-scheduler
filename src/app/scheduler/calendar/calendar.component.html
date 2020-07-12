@@ -23,8 +23,7 @@
   </div>
 </div>
 
-<!-- (cellClick)="handleDayCellClicked($event, dayData)" -->
-<!-- reminder creator popover -->
+<!-- reminder editor popover -->
 <sat-popover
   #reminderPopover
   hasBackdrop
@@ -33,16 +32,11 @@
   [anchor]="editingElementRef"
   (closed)="handledPopoverClosed()"
 >
-  <!-- <app-reminder-editor
-    *ngIf="reminderPopover.isOpen()"
-    [initialDate]="editingDayData?.dateTime"
-    (closePopover)="reminderPopover.close()"
-  ></app-reminder-editor> -->
   <app-reminder-overview
     *ngIf="reminderPopover.isOpen()"
     [dayData]="editingDayData"
     [reminder]="editingReminder"
     (closePopover)="reminderPopover.close()"
   ></app-reminder-overview>
-  <!-- reminder creator popover -->
 </sat-popover>
+<!-- reminder editor popover -->

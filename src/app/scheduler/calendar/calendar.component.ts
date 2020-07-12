@@ -15,6 +15,8 @@ import memoizee from "src/app/shared/utils/memoizee-decorator";
 import { SatPopover } from "@ncstate/sat-popover";
 import { ReminderEditingService } from "../services/reminder-editing.service";
 import Reminder from "../models/reminder";
+import { throttle } from "helpful-decorators";
+
 @Component({
   selector: "[app-calendar]",
   templateUrl: "./calendar.component.html",
@@ -134,8 +136,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   @HostListener("mousewheel", ["$event"])
+  @throttle(400)
   onMousewheel(event) {
-    console.log(this.cdService);
     if (event.wheelDelta > 0) {
       this.cdService.goToPreviousMonth();
     }

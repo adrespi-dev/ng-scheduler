@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CurrentDateService } from "./current-date.service";
-import { merge, map, tap, mergeAll } from "rxjs/operators";
-// import * as moment from "moment";
+import { map } from "rxjs/operators";
 import DayData from "../models/day-data";
 import { RemindersService } from "./reminders.service";
 import { combineLatest, Observable } from "rxjs";
@@ -20,6 +19,8 @@ interface CalendarsDataModel {
   providedIn: "root",
 })
 export class CalendarDaysProviderService {
+  currentMonth: moment.Moment;
+
   constructor(
     private cdService: CurrentDateService,
     private remindersService: RemindersService
@@ -36,6 +37,7 @@ export class CalendarDaysProviderService {
     calendarsDayData: CalendarsDataModel,
     reminders: Reminder[]
   ) {
+    this.currentMonth = calendarsDayData.startOfMonth.startOf("month");
     const ds: DayData[] = calendarsDayData.dataSource;
     ds.forEach((r) => (r.reminders = []));
 
@@ -52,7 +54,7 @@ export class CalendarDaysProviderService {
   }
 
   private get _calendarDataSource$(): Observable<CalendarsDataModel> {
-    return this.cdService.currentDate$.pipe(
+    return this.cdService.currentMonth$.pipe(
       map((newDate) => {
         const startOfMonth = newDate.clone().startOf("month").startOf("day");
         const endOfMonth = newDate.clone().endOf("month").startOf("day");

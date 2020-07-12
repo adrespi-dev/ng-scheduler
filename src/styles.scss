@@ -3,7 +3,7 @@
 @import "./styles/material_overrides";
 @import "./styles/buttons";
 @import "./styles/popovers";
-// @import "./styles/forms";
+@import "./styles/helpers";
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -24,8 +24,4 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-.fx-spacer {
-  flex: 1;
 }

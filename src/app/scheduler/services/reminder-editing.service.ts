@@ -15,8 +15,6 @@ export class ReminderEditingService {
   }>();
   reminderPopoverClosed$ = new Subject();
 
-  newReminderFormChanged$ = new Subject();
-
   constructor() {}
 
   get reminderPopoverOpen$() {

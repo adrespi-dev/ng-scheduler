@@ -1,0 +1,33 @@
+.day-overflow-wrapper {
+  width: 208px;
+  padding-bottom: 14px;
+}
+
+.day-overflow-header {
+  position: relative;
+}
+
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 3px;
+}
+
+.day-name {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.day-number {
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.reminders-scroll-list {
+  max-height: 480px;
+  overflow: auto;
+  padding: 0 10px;
+}

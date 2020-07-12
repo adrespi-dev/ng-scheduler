@@ -1,27 +1,56 @@
 <div
+  #dayCell
   class="day-cell"
   [class.in-current-month]="dayData?.dayInCurrentMonth"
   [class.is-weekend]="dayData?.isWeekend"
   [class.is-today]="dayData?.isCurrentDay"
   (click)="handleCellClick()"
 >
+  <button
+    *ngIf="dayData?.reminders.length > 0"
+    mat-icon-button
+    matTooltip="Delete all reminders on this day"
+    class="day-cell-delete-remainders sm-size"
+    (click)="handleDeleteAllReminders($event)"
+  >
+    <i-feather name="trash"></i-feather>
+  </button>
+
   <div class="day-cell-header">
     {{
       dayData?.dateTime | date: (getDay(dayData?.dateTime) == 1 ? "d MMM" : "d")
     }}
   </div>
-  <div class="day-cell-body">
-    <div
-      class="day-cell-new-reminder"
-      [class.calendar-hide]="!isEditing"
-      #newReminder
-    >
-      (No title)
-    </div>
+  <div #dayBody class="day-cell-body" [style.height.px]="fixedHeigh">
+    <div #dayBodyContent class="day-cell-body-content">
+      <div
+        class="day-cell-new-reminder"
+        [class.calendar-hide]="!isEditing"
+        #newReminder
+      >
+        (New reminder)
+      </div>
 
-    <app-reminder-item
-      [reminder]="reminder"
-      *ngFor="let reminder of dayData?.reminders"
-    ></app-reminder-item>
+      <app-reminder-item
+        [reminder]="reminder"
+        *ngFor="let reminder of dayData?.reminders"
+      ></app-reminder-item>
+    </div>
+  </div>
+  <div
+    #showMore
+    class="day-cell-show-more"
+    (click)="handleShowMoreClick($event)"
+    [class.d-none]="hiddenItemsByOverflow < 1"
+  >
+    {{ hiddenItemsByOverflow }} more
   </div>
 </div>
+
+<sat-popover [anchor]="showMore" hasBackdrop #popoverOverFlow>
+  <app-day-overflow
+    *ngIf="popoverOverFlow.isOpen()"
+    [dayData]="dayData"
+    (closePopover)="popoverOverFlow.close()"
+  ></app-day-overflow>
+</sat-popover>

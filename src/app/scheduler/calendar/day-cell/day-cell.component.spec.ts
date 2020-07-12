@@ -1,16 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DayCellComponent } from './day-cell.component';
+import { DayCellComponent } from "./day-cell.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { MaterialModule } from "src/app/shared/material.module";
+import { SatPopoverModule } from "@ncstate/sat-popover";
 
-describe('DayCellComponent', () => {
+describe("DayCellComponent", () => {
   let component: DayCellComponent;
   let fixture: ComponentFixture<DayCellComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DayCellComponent ]
-    })
-    .compileComponents();
+      declarations: [DayCellComponent],
+      imports: [HttpClientTestingModule, MaterialModule, SatPopoverModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +22,7 @@ describe('DayCellComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

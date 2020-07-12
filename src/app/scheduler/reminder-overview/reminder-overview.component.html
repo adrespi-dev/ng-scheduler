@@ -1,5 +1,5 @@
 <ng-container *ngIf="!isNewReminder && !showForm; else formBlock">
-  <div class="reminder-overview-wrapper">
+  <div class="reminder-overview-wrapper" *ngIf="reminder">
     <div class="reminder-overview-toolbar">
       <div class="fx-spacer"></div>
 
@@ -54,6 +54,28 @@
         </div>
         <div class="reminder-prop-value">
           {{ reminder.city }}
+        </div>
+      </div>
+    </div>
+    <div class="reminder-weather-properties" *ngIf="reminder?.forecast">
+      <h2>Weather Information</h2>
+      <div class="reminder-prop">
+        <div class="reminder-prop-prefix">
+          <img [src]="reminder.forecast.icon" />
+        </div>
+        <div class="reminder-prop-value weather-temperature">
+          {{ reminder.forecast.temp }}°, {{ reminder.forecast.description }}
+        </div>
+      </div>
+      <div class="weather-temperatures">
+        Max.: {{ reminder.forecast.tempMax }}°
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Min.:
+        {{ reminder.forecast.tempMin }}°
+      </div>
+      <div class="weather-humidity">
+        <i class="wi wi-raindrop"></i>
+        <div class="weather-humidity-value">
+          {{ reminder.forecast.humidity }}%
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+@import "variables";
+
 :host {
   display: block;
   height: 100%;
@@ -6,4 +8,27 @@
 
 .scheduler-container {
   height: 100%;
+  display: flex;
+}
+
+.scheduler-sidebar {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 256px;
+  overflow: hidden;
+  position: relative;
+  border-right: 1px solid $border-color;
+  padding: 8px 8px;
+  background: #f5f8fa;
+
+  .sidebar-section {
+    flex: 1 0 auto;
+  }
+}
+
+.app-calendar {
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
 }

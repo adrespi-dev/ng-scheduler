@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CalendarComponent } from "./calendar.component";
 import { SatPopoverModule } from "@ncstate/sat-popover";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("CalendarComponent", () => {
   let component: CalendarComponent;
@@ -10,7 +11,7 @@ describe("CalendarComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent],
-      imports: [SatPopoverModule],
+      imports: [SatPopoverModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 

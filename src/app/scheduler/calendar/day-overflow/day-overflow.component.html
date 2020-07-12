@@ -1,0 +1,27 @@
+<div class="day-overflow-wrapper">
+  <div class="day-overflow-header">
+    <button
+      class="btn-close sm-size"
+      (click)="closePopover.emit()"
+      matTooltip="Close"
+      mat-icon-button
+    >
+      <i-feather name="x"></i-feather>
+    </button>
+
+    <div class="day-name">
+      {{ dayData?.dateTime | date: "EEE" }}
+    </div>
+
+    <div class="day-number">
+      {{ dayData?.dateTime | date: "dd" }}
+    </div>
+  </div>
+
+  <div class="reminders-scroll-list">
+    <app-reminder-item
+      [reminder]="reminder"
+      *ngFor="let reminder of dayData?.reminders"
+    ></app-reminder-item>
+  </div>
+</div>

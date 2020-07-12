@@ -23,6 +23,7 @@
     "@angular/router": "~9.0.2",
     "@ncstate/sat-popover": "^6.0.0",
     "angular-feather": "^6.0.10",
+    "helpful-decorators": "^2.1.0",
     "memoizee": "^0.4.14",
     "moment": "^2.27.0",
     "ngx-color-picker": "^9.1.0",

@@ -65,7 +65,7 @@ export class ReminderEditorComponent implements OnInit {
       if (this.initialDate) {
         this.date.setValue(this.initialDate);
       }
-    } else {
+    } else if (this.reminderToUpdate) {
       const dateTime = this.reminderToUpdate.dateTime;
       const reminderDto: ReminderDTO = {
         title: this.reminderToUpdate.title,
@@ -104,11 +104,34 @@ export class ReminderEditorComponent implements OnInit {
 
   onSubmit() {
     this.isLoading = true;
+
+    if (this.isNewReminder) {
+      this.createReminder();
+    } else {
+      this.updateReminder();
+    }
+  }
+
+  createReminder() {
     this.reminderService
       .createNewReminder(this.reminderForm.value)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((_) => {
-        this.snackBar.open("Reminder created successfully", "Ok");
+        this.snackBar.open("Reminder created successfully", "Ok", {
+          duration: 2000,
+        });
+        this.closePopover.emit();
+      });
+  }
+
+  updateReminder() {
+    this.reminderService
+      .updateReminder(this.reminderToUpdate.id, this.reminderForm.value)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe((_) => {
+        this.snackBar.open("Reminder update successfully", "Ok", {
+          duration: 2000,
+        });
         this.closePopover.emit();
       });
   }

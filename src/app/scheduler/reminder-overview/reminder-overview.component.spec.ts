@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ReminderOverviewComponent } from './reminder-overview.component';
+import { ReminderOverviewComponent } from "./reminder-overview.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { MaterialModule } from "src/app/shared/material.module";
 
-describe('ReminderOverviewComponent', () => {
+describe("ReminderOverviewComponent", () => {
   let component: ReminderOverviewComponent;
   let fixture: ComponentFixture<ReminderOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReminderOverviewComponent ]
-    })
-    .compileComponents();
+      declarations: [ReminderOverviewComponent],
+      imports: [HttpClientTestingModule, MaterialModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('ReminderOverviewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

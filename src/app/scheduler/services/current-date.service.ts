@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as moment from "moment";
 import { BehaviorSubject, Observable } from "rxjs";
+import { map, distinctUntilChanged } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -16,6 +17,15 @@ export class CurrentDateService {
 
   get currentDate$(): Observable<moment.Moment> {
     return this._currentDate$.asObservable();
+  }
+
+  get currentMonth$(): Observable<moment.Moment> {
+    return this._currentDate$.asObservable().pipe(
+      map((date) => {
+        return date.startOf("month");
+      }),
+      distinctUntilChanged((a, b) => a.isSame(b, "month"))
+    );
   }
 
   goToPreviousMonth() {
@@ -35,7 +45,8 @@ export class CurrentDateService {
     } else {
       date = value;
     }
-    console.log("new date is", date.format());
     this._currentDate$.next(date);
+    // if (!this._currentDate$.value.isSame(date, "month")) {
+    // }
   }
 }

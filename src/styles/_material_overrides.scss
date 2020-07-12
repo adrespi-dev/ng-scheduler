@@ -130,3 +130,32 @@
     line-height: 20px;
   }
 }
+
+/**
+Calendars
+*/
+.mat-calendar {
+  font-family: inherit;
+}
+
+.mat-calendar-body-cell-content {
+  font-weight: 600;
+  color: inherit;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  color: #0091ae;
+  border: 0px;
+  font-weight: 700;
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected) {
+  background-color: #bef0fa;
+  color: inherit;
+}
+
+.mat-calendar-body-selected {
+  background-color: #14adcc;
+  color: #045363;
+}

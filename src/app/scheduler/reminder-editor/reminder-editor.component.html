@@ -195,7 +195,7 @@
         color="primary"
         [disabled]="!reminderForm.valid || isLoading"
       >
-        Save Reminder
+        {{ isNewReminder ? "Create" : "Update" }} Reminder
       </button>
     </div>
   </form>

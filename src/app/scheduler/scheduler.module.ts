@@ -10,6 +10,8 @@ import { ReminderEditorComponent } from "./reminder-editor/reminder-editor.compo
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ReminderItemComponent } from "./calendar/reminder-item/reminder-item.component";
 import { ReminderOverviewComponent } from "./reminder-overview/reminder-overview.component";
+import { DayOverflowComponent } from './calendar/day-overflow/day-overflow.component';
+import { MiniCalendarComponent } from './mini-calendar/mini-calendar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ReminderOverviewComponent } from "./reminder-overview/reminder-overview
     ReminderEditorComponent,
     ReminderItemComponent,
     ReminderOverviewComponent,
+    DayOverflowComponent,
+    MiniCalendarComponent,
   ],
   imports: [
     CommonModule,

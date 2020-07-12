@@ -10,6 +10,10 @@
 
   &:hover {
     background: $calendar-cell-hover-bg;
+
+    .day-cell-delete-remainders {
+      opacity: 1;
+    }
   }
 }
 
@@ -21,9 +25,28 @@
   border-top: 4px solid transparent;
 }
 
+.day-cell-delete-remainders {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  z-index: 999;
+  width: 26px;
+  height: 26px;
+  opacity: 0;
+
+  i-feather {
+    height: 17px;
+    width: 17px;
+    margin-top: 3px;
+    margin-left: 2px;
+  }
+}
+
 .day-cell-body {
   padding-top: 8px;
   padding: 2px;
+  // height: calc(100% - 37px);
+  overflow: hidden;
 }
 
 .in-current-month {
@@ -49,6 +72,8 @@
   font-size: 12px;
   background-color: $primary-color;
   color: white;
+  line-height: 18px;
+  height: 26px;
   margin-bottom: 4px;
 
   animation-duration: 198.1614349775785ms;
@@ -61,6 +86,21 @@
 
   &.calendar-hide {
     display: none;
+  }
+}
+
+.day-cell-show-more {
+  height: 26px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: rgba(32, 33, 36, 0.122);
   }
 }
 

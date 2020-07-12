@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReminderEditorComponent } from "./reminder-editor.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("ReminderEditorComponent", () => {
   let component: ReminderEditorComponent;
@@ -11,7 +12,7 @@ describe("ReminderEditorComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ReminderEditorComponent],
-      imports: [BrowserAnimationsModule, SharedModule],
+      imports: [BrowserAnimationsModule, SharedModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 
