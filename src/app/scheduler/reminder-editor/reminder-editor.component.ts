@@ -1,10 +1,14 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
-import { startWith, map } from "rxjs/operators";
+import { startWith, map, finalize } from "rxjs/operators";
 import * as moment from "moment";
 import DEFAULT_COLORS from "../data/colors";
 import { MatOption } from "@angular/material/core";
+import { RemindersService, ReminderDTO } from "../services/reminders.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import DayData from "../models/day-data";
+import Reminder from "../models/reminder";
 
 @Component({
   selector: "app-reminder-editor",
@@ -12,7 +16,13 @@ import { MatOption } from "@angular/material/core";
   styleUrls: ["./reminder-editor.component.scss"],
 })
 export class ReminderEditorComponent implements OnInit {
+  @Input() isNewReminder: boolean;
   @Input() initialDate: Date;
+  @Input() reminderToUpdate: Reminder;
+
+  @Output() closePopover = new EventEmitter();
+
+  isLoading = false;
 
   timeOptions: string[] = [];
   filteredTimeOptions: Observable<string[]>;
@@ -37,7 +47,10 @@ export class ReminderEditorComponent implements OnInit {
     color: this.color,
   });
 
-  constructor() {
+  constructor(
+    private reminderService: RemindersService,
+    private snackBar: MatSnackBar
+  ) {
     const startOfDay = moment().startOf("day");
     const endDate = startOfDay.clone().add(1, "days");
 
@@ -48,9 +61,20 @@ export class ReminderEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.initialDate) {
-      this.date.setValue(this.initialDate);
-      // this.date.disable();
+    if (this.isNewReminder) {
+      if (this.initialDate) {
+        this.date.setValue(this.initialDate);
+      }
+    } else {
+      const dateTime = this.reminderToUpdate.dateTime;
+      const reminderDto: ReminderDTO = {
+        title: this.reminderToUpdate.title,
+        date: dateTime.clone().startOf("day").toDate(),
+        time: dateTime.clone().format("HH:mm"),
+        city: this.reminderToUpdate.city,
+        color: this.reminderToUpdate.color,
+      };
+      this.reminderForm.setValue(reminderDto);
     }
 
     this.filteredTimeOptions = this.time.valueChanges.pipe(
@@ -76,5 +100,16 @@ export class ReminderEditorComponent implements OnInit {
 
   onColorChanged(newColor: string) {
     this.color.setValue(newColor);
+  }
+
+  onSubmit() {
+    this.isLoading = true;
+    this.reminderService
+      .createNewReminder(this.reminderForm.value)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe((_) => {
+        this.snackBar.open("Reminder created successfully", "Ok");
+        this.closePopover.emit();
+      });
   }
 }

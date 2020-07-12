@@ -1,19 +1,57 @@
 import { Injectable } from "@angular/core";
 import { CurrentDateService } from "./current-date.service";
-import { map } from "rxjs/operators";
-import * as moment from "moment";
+import { merge, map, tap, mergeAll } from "rxjs/operators";
+// import * as moment from "moment";
 import DayData from "../models/day-data";
+import { RemindersService } from "./reminders.service";
+import { combineLatest, Observable } from "rxjs";
+import Reminder from "../models/reminder";
 
 const SUNDAY_WEEKDAY = 0;
 const SATURDAY_WEEKDAY = 6;
+
+interface CalendarsDataModel {
+  startOfMonth: moment.Moment;
+  endOfMonth: moment.Moment;
+  dataSource: DayData[];
+}
 
 @Injectable({
   providedIn: "root",
 })
 export class CalendarDaysProviderService {
-  constructor(private cdService: CurrentDateService) {}
+  constructor(
+    private cdService: CurrentDateService,
+    private remindersService: RemindersService
+  ) {}
 
   get calendarDaysDataSource$() {
+    return combineLatest([
+      this._calendarDataSource$,
+      this.remindersService.reminders$,
+    ]).pipe(map((result) => this.assignRemindersToDays(result[0], result[1])));
+  }
+
+  private assignRemindersToDays(
+    calendarsDayData: CalendarsDataModel,
+    reminders: Reminder[]
+  ) {
+    const ds: DayData[] = calendarsDayData.dataSource;
+    ds.forEach((r) => (r.reminders = []));
+
+    reminders.forEach((rem) => {
+      const dayData = ds.find((r) => {
+        return r.dateTimeMoment.isSame(rem.dateTime, "date");
+      });
+      if (dayData) {
+        dayData.reminders.push(rem);
+      }
+    });
+
+    return calendarsDayData;
+  }
+
+  private get _calendarDataSource$(): Observable<CalendarsDataModel> {
     return this.cdService.currentDate$.pipe(
       map((newDate) => {
         const startOfMonth = newDate.clone().startOf("month").startOf("day");
@@ -44,6 +82,7 @@ export class CalendarDaysProviderService {
               iterationDate.get("month") == startOfMonth.get("month"),
             isWeekend: weekday == SUNDAY_WEEKDAY || weekday == SATURDAY_WEEKDAY,
             isCurrentDay: iterationDate.isSame(new Date(), "day"),
+            reminders: [],
           });
           iterationDate = iterationDate.add(1, "days");
         }

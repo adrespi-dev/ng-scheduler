@@ -1,5 +1,7 @@
 <div class="reminder-form-wrapper" [style.border-color]="color.value">
-  <form class="app-form" [formGroup]="reminderForm">
+  <app-loading-overlay [isLoading]="isLoading"></app-loading-overlay>
+
+  <form class="app-form" [formGroup]="reminderForm" (submit)="onSubmit()">
     <div class="form-control title-control">
       <mat-form-field appearance="standard">
         <input
@@ -176,8 +178,23 @@
       </div>
     </div>
 
-    <div class="form-submit">
-      <button mat-flat-button color="primary" [disabled]="!reminderForm.valid">
+    <div class="form-button-group">
+      <div class="fx-spacer"></div>
+
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="closePopover.emit()"
+        color="default"
+      >
+        Discard
+      </button>
+
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!reminderForm.valid || isLoading"
+      >
         Save Reminder
       </button>
     </div>

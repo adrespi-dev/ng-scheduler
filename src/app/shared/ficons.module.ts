@@ -8,6 +8,9 @@ import {
   Clock,
   MapPin,
   Tag,
+  Edit2,
+  Trash,
+  X,
 } from "angular-feather/icons";
 
 const icons = {
@@ -18,6 +21,9 @@ const icons = {
   Clock,
   MapPin,
   Tag,
+  Edit2,
+  Trash,
+  X,
 };
 
 @NgModule({

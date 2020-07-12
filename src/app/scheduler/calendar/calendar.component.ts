@@ -13,7 +13,8 @@ import DayData from "../models/day-data";
 import { CalendarDaysProviderService } from "../services/calendar-days-provider.service";
 import memoizee from "src/app/shared/utils/memoizee-decorator";
 import { SatPopover } from "@ncstate/sat-popover";
-
+import { ReminderEditingService } from "../services/reminder-editing.service";
+import Reminder from "../models/reminder";
 @Component({
   selector: "[app-calendar]",
   templateUrl: "./calendar.component.html",
@@ -32,33 +33,70 @@ export class CalendarComponent implements OnInit, OnDestroy {
   endOfMonth: moment.Moment;
 
   dataSource: DayData[] = [];
-  editingDayCellRef: any;
+
+  editingElementRef: any;
   editingDayData: DayData;
+  editingReminder: Reminder;
+
+  reminderEditingSub: Subscription;
 
   constructor(
     private provider: CalendarDaysProviderService,
-    private cdService: CurrentDateService
+    private cdService: CurrentDateService,
+    private reminderEditingService: ReminderEditingService
   ) {}
 
   ngOnInit(): void {
     this.providerSub = this.provider.calendarDaysDataSource$.subscribe(
       (data) => {
-        this.isAnimating = true;
+        this.isAnimating = false;
 
-        if (data.startOfMonth.isBefore(this.startOfMonth)) {
-          // we are changing to a previous month
-          this.animationType = "previous-month-transition";
+        const isSameMonth = data.startOfMonth.isSame(
+          this.startOfMonth,
+          "month"
+        );
+
+        if (!isSameMonth) {
+          this.isAnimating = true;
+          if (data.startOfMonth.isBefore(this.startOfMonth)) {
+            // we are changing to a previous month
+            this.animationType = "previous-month-transition";
+          } else {
+            this.animationType = "next-month-transition";
+          }
         } else {
-          this.animationType = "next-month-transition";
+          this.isAnimating = false;
         }
 
         this.dataSource = data.dataSource;
         this.startOfMonth = data.startOfMonth;
         this.endOfMonth = data.endOfMonth;
 
+        if (!isSameMonth) {
+          setTimeout(() => {
+            this.isAnimating = false;
+          }, 1);
+        }
+      }
+    );
+
+    this.reminderEditingSub = this.reminderEditingService.reminderPopoverOpen$.subscribe(
+      (data) => {
+        this.editingElementRef = null;
+        this.editingDayData = null;
+        this.editingReminder = null;
+
+        if (data.isNewReminder) {
+          this.editingElementRef = data.templateRef;
+          this.editingDayData = data.dayData;
+        } else {
+          this.editingElementRef = data.templateRef;
+          this.editingReminder = data.reminder;
+        }
+
         setTimeout(() => {
-          this.isAnimating = false;
-        }, 1);
+          this.popOver.open();
+        }, 50);
       }
     );
 
@@ -67,23 +105,19 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.providerSub.unsubscribe();
+    this.reminderEditingSub.unsubscribe();
   }
 
   clearDataSource() {
     this.dataSource = [];
   }
 
-  handleDayCellClicked(ref: any, dayData: DayData) {
-    this.editingDayCellRef = ref;
-    this.editingDayData = dayData;
-    setTimeout(() => {
-      this.popOver.open();
-    }, 50);
-  }
-
   handledPopoverClosed() {
-    this.editingDayCellRef = null;
+    this.editingElementRef = null;
     this.editingDayData = null;
+    this.editingReminder = null;
+
+    this.reminderEditingService.reminderPopoverClosed$.next();
   }
 
   /**
@@ -92,10 +126,10 @@ export class CalendarComponent implements OnInit, OnDestroy {
    */
   @memoizee()
   groupDataSource(dataSource: DayData[]) {
-    const rowGroups = new Array(Math.ceil(dataSource.length / 7))
+    const ds = Object.assign([], dataSource);
+    const rowGroups = new Array(Math.ceil(ds.length / 7))
       .fill(null)
-      .map((_) => dataSource.splice(0, 7));
-    console.log(rowGroups);
+      .map((_) => ds.splice(0, 7));
     return rowGroups;
   }
 

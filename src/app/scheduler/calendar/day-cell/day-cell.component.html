@@ -1,13 +1,13 @@
 <div
   class="day-cell"
-  [class.in-current-month]="dayData.dayInCurrentMonth"
-  [class.is-weekend]="dayData.isWeekend"
-  [class.is-today]="dayData.isCurrentDay"
+  [class.in-current-month]="dayData?.dayInCurrentMonth"
+  [class.is-weekend]="dayData?.isWeekend"
+  [class.is-today]="dayData?.isCurrentDay"
   (click)="handleCellClick()"
 >
   <div class="day-cell-header">
     {{
-      dayData.dateTime | date: (getDay(dayData.dateTime) == 1 ? "d MMM" : "d")
+      dayData?.dateTime | date: (getDay(dayData?.dateTime) == 1 ? "d MMM" : "d")
     }}
   </div>
   <div class="day-cell-body">
@@ -18,5 +18,10 @@
     >
       (No title)
     </div>
+
+    <app-reminder-item
+      [reminder]="reminder"
+      *ngFor="let reminder of dayData?.reminders"
+    ></app-reminder-item>
   </div>
 </div>

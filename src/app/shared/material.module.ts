@@ -7,6 +7,9 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   imports: [
@@ -18,6 +21,9 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatAutocompleteModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
   exports: [
     MatButtonModule,
@@ -28,6 +34,9 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatAutocompleteModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

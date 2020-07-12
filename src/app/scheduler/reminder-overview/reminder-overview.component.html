@@ -1,0 +1,70 @@
+<ng-container *ngIf="!isNewReminder && !showForm; else formBlock">
+  <div class="reminder-overview-wrapper">
+    <div class="reminder-overview-toolbar">
+      <div class="fx-spacer"></div>
+
+      <button
+        class="sm-size"
+        matTooltip="Edit reminder"
+        mat-icon-button
+        (click)="showForm = true"
+      >
+        <i-feather name="edit-2"></i-feather>
+      </button>
+      <button
+        class="sm-size"
+        matTooltip="Delete reminder"
+        mat-icon-button
+        (click)="handleDeleteReminder()"
+      >
+        <i-feather name="trash"></i-feather>
+      </button>
+      <button
+        class="sm-size"
+        matTooltip="Close "
+        mat-icon-button
+        (click)="closePopover.emit()"
+      >
+        <i-feather name="x"></i-feather>
+      </button>
+    </div>
+    <div class="reminder-overview-properties">
+      <div class="reminder-prop prop-title">
+        <div class="reminder-prop-prefix">
+          <div
+            class="reminder-prop-color"
+            [style.background]="reminder.color"
+          ></div>
+        </div>
+        <div class="reminder-prop-value lg-text">
+          {{ reminder.title }}
+        </div>
+      </div>
+      <div class="reminder-prop prop-date">
+        <div class="reminder-prop-prefix">
+          <i-feather name="clock"></i-feather>
+        </div>
+        <div class="reminder-prop-value">
+          {{ reminder.date | date: "dd MMM yyyy HH:mm" }}
+        </div>
+      </div>
+      <div class="reminder-prop prop-city">
+        <div class="reminder-prop-prefix">
+          <i-feather name="map-pin"></i-feather>
+        </div>
+        <div class="reminder-prop-value">
+          {{ reminder.city }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #formBlock>
+  <app-reminder-editor
+    [isNewReminder]="isNewReminder"
+    [initialDate]="initialDate"
+    [reminderToUpdate]="reminder"
+    (closePopover)="closePopover.emit()"
+  ></app-reminder-editor>
+</ng-template>

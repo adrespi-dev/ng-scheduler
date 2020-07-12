@@ -22,7 +22,8 @@
 }
 
 .day-cell-body {
-  padding: 8px;
+  padding-top: 8px;
+  padding: 2px;
 }
 
 .in-current-month {
@@ -43,12 +44,12 @@
 }
 
 .day-cell-new-reminder {
-  // border: 1px solid $calendar-border-color;
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 12px;
   background-color: $primary-color;
   color: white;
+  margin-bottom: 4px;
 
   animation-duration: 198.1614349775785ms;
   animation-delay: 0ms;

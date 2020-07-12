@@ -5,31 +5,46 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  OnDestroy,
 } from "@angular/core";
 import DayData from "../../models/day-data";
 import memoizee from "src/app/shared/utils/memoizee-decorator";
+import { ReminderEditingService } from "../../services/reminder-editing.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "[app-day-cell]",
   templateUrl: "./day-cell.component.html",
   styleUrls: ["./day-cell.component.scss"],
 })
-export class DayCellComponent implements OnInit {
+export class DayCellComponent implements OnInit, OnDestroy {
   @Input() dayData: DayData;
   @Input() isEditing: boolean = false;
-  @Output() cellClick = new EventEmitter<any>();
   @ViewChild("newReminder") newReminder: any;
+  newReminderFormSub: Subscription;
 
-  constructor() {}
+  constructor(private reminderEditingService: ReminderEditingService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.newReminderFormSub = this.reminderEditingService.newReminderFormChanged$.subscribe(
+      (newReminderSnapshop) => {
+        console.log(newReminderSnapshop);
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.newReminderFormSub.unsubscribe();
+  }
 
   handleCellClick() {
-    this.cellClick.next(this.newReminder);
+    this.reminderEditingService.openNewReminder(this.newReminder, this.dayData);
   }
 
   @memoizee()
   getDay(date: Date) {
+    if (!date) return null;
+
     return date.getDate();
   }
 }

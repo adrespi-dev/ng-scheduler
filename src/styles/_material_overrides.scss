@@ -45,6 +45,7 @@
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: rgb(223, 227, 235);
 }
+
 .app-form {
   .mat-form-field-appearance-standard .mat-form-field-flex {
     padding-top: 0px;
@@ -116,5 +117,16 @@
         }
       }
     }
+  }
+}
+
+.mat-icon-button.sm-size {
+  width: 32px;
+  height: 32px;
+
+  .mat-button-wrapper {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
   }
 }

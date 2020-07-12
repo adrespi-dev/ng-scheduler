@@ -1,0 +1,25 @@
+<div
+  #reminderWrapper
+  class="reminder-wrapper"
+  [class.is-editing]="isEditing"
+  [style.border-left-color]="reminder?.color"
+  (click)="handleClick($event)"
+>
+  <div class="reminder-title">
+    <strong>{{ reminder?.date | date: "HH:mm" }}</strong> {{ reminder?.title }}
+  </div>
+  <div
+    class="reminder-weather"
+    *ngIf="reminder?.isLoadingForecast || reminder?.forecast"
+  >
+    <ng-container *ngIf="reminder?.isLoadingForecast; else weatherIcon">
+      <mat-spinner diameter="16"></mat-spinner>
+    </ng-container>
+    <ng-template #weatherIcon>
+      <i
+        class="wi wi-owm-{{ reminder?.forecast?.id }}"
+        [matTooltip]="reminder?.forecast?.description"
+      ></i>
+    </ng-template>
+  </div>
+</div>
