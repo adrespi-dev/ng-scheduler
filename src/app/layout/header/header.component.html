@@ -1,7 +1,7 @@
 <header class="app-header-wrapper">
   <div class="app-header">
     <div class="app-header-branding">
-      Demo Calendar
+      Calendar
     </div>
 
     <div class="app-header-today">
@@ -26,6 +26,13 @@
 
     <div class="app-header-month">
       {{ (cdService.currentDate$ | async | date: "MMM yyyy") || "Loading.." }}
+    </div>
+
+    <div class="fx-spacer"></div>
+
+    <div class="header-user">
+      <div class="header-user-avatar"></div>
+      <div class="header-user-name">Adrián Espinoza</div>
     </div>
   </div>
 </header>

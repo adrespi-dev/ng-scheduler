@@ -1,15 +1,17 @@
-const DEFAULT_COLORS = [
+import Color from "../models/color";
+
+const DEFAULT_COLORS: Color[] = [
   {
     label: "Blue",
     value: "#0052cc",
   },
   {
     label: "Orange",
-    value: "#f4511e",
+    value: "#ff5c32",
   },
   {
     label: "Green",
-    value: "#0b8043",
+    value: "#00afb3",
   },
   {
     label: "Purple",

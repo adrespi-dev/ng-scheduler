@@ -20,7 +20,7 @@ export class RemindersService {
   private _reminders$ = new BehaviorSubject<Reminder[]>([]);
 
   constructor(public foreCastService: WeatherForecastService) {
-    this._reminders$.next(getSeedData());
+    this.setNewRemindersList(getSeedData());
   }
 
   get reminders(): Reminder[] {
@@ -29,6 +29,17 @@ export class RemindersService {
 
   get reminders$(): Observable<Reminder[]> {
     return this._reminders$.asObservable();
+  }
+
+  setNewRemindersList(newList: Reminder[]) {
+    this._reminders$.next(
+      newList.sort((a, b) => {
+        const sortingByDate =
+          b.dateTime.milliseconds() - a.dateTime.milliseconds();
+        const sortingById = b.id - a.id;
+        return sortingByDate || sortingById;
+      })
+    );
   }
 
   createNewReminder(reminder: ReminderDTO): Observable<boolean> {
@@ -73,11 +84,7 @@ export class RemindersService {
         );
 
         const newReminderList = this._reminders$.value.concat([newReminder]);
-        this._reminders$.next(
-          newReminderList.sort((a, b) =>
-            b.dateTime.isBefore(a.dateTime) ? 0 : -1
-          )
-        );
+        this.setNewRemindersList(newReminderList);
 
         subscriber.next(true);
         subscriber.complete();
@@ -95,10 +102,8 @@ export class RemindersService {
         const remintedToUpdate = this.reminders.find((r) => r.id == reminderId);
         remintedToUpdate.updateData(dto.title, dateTime, dto.city, dto.color);
 
-        const newReminderList = this.reminders
-          .slice()
-          .sort((a, b) => (b.dateTime.isBefore(a.dateTime) ? 0 : -1));
-        this._reminders$.next(newReminderList);
+        const newReminderList = this.reminders.slice();
+        this.setNewRemindersList(newReminderList);
 
         subscriber.next(true);
         subscriber.complete();
@@ -109,10 +114,10 @@ export class RemindersService {
   private deleteReminders$(remindersIds: number[]) {
     return new Observable<boolean>((subscriber) => {
       setTimeout(() => {
-        const newReminderList = this.reminders
-          .filter((r) => !remindersIds.includes(r.id))
-          .sort((a, b) => (b.dateTime.isBefore(a.dateTime) ? 0 : -1));
-        this._reminders$.next(newReminderList);
+        const newReminderList = this.reminders.filter(
+          (r) => !remindersIds.includes(r.id)
+        );
+        this.setNewRemindersList(newReminderList);
 
         subscriber.next(true);
         subscriber.complete();

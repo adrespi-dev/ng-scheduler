@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { CurrentDateService } from "./current-date.service";
 import { map } from "rxjs/operators";
 import DayData from "../models/day-data";
-import { RemindersService } from "./reminders.service";
 import { combineLatest, Observable } from "rxjs";
 import Reminder from "../models/reminder";
+import { RemindersFilteringService } from "./reminders-filtering.service";
 
 const SUNDAY_WEEKDAY = 0;
 const SATURDAY_WEEKDAY = 6;
@@ -23,13 +23,13 @@ export class CalendarDaysProviderService {
 
   constructor(
     private cdService: CurrentDateService,
-    private remindersService: RemindersService
+    private remindersFilteringService: RemindersFilteringService
   ) {}
 
   get calendarDaysDataSource$() {
     return combineLatest([
       this._calendarDataSource$,
-      this.remindersService.reminders$,
+      this.remindersFilteringService.filteredReminders$,
     ]).pipe(map((result) => this.assignRemindersToDays(result[0], result[1])));
   }
 

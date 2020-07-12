@@ -159,3 +159,65 @@ Calendars
   background-color: #14adcc;
   color: #045363;
 }
+
+/**
+Mat Selection Lists
+*/
+body .mat-list-base .mat-list-option {
+  height: 36px;
+  color: inherit;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+body .mat-pseudo-checkbox {
+  width: 18px;
+  height: 18px;
+
+  &.mat-pseudo-checkbox-checked::after {
+    top: 3.4px;
+    left: 2px;
+  }
+}
+
+body .mat-list-base {
+  padding-top: 0px;
+}
+
+mat-selection-list {
+  overflow: auto;
+  max-height: calc(100% - 20px);
+}
+
+.mat-list-colors {
+  .mat-pseudo-checkbox {
+    color: inherit;
+  }
+
+  .mat-list-text {
+    color: $text-color;
+  }
+
+  .mat-primary .mat-pseudo-checkbox-checked {
+    background: currentColor;
+  }
+}
+
+.mat-list-base .mat-list-option.option-select-all {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  .mat-checkbox-indeterminate.mat-primary,
+  .mat-checkbox-checked.mat-primary {
+    .mat-checkbox-background {
+      background-color: #2e3f50;
+    }
+  }
+
+  .mat-checkbox {
+    margin-right: 18px;
+    padding: 0 0px;
+  }
+}

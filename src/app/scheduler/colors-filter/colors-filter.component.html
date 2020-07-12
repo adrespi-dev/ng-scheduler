@@ -1,0 +1,40 @@
+<div class="filter-title">
+  Filter By Color
+</div>
+
+<mat-selection-list
+  #colorsList
+  class="mat-list-colors"
+  [(ngModel)]="selectedColors"
+  (ngModelChange)="handleSelectionChanged()"
+  color="primary"
+  #colorsList
+>
+  <div
+    class="mat-list-option option-select-all"
+    (click)="$event.stopPropagation(); toggleSelectAll(!selectAll.checked)"
+  >
+    <mat-checkbox
+      #selectAll
+      class="mat-option"
+      [indeterminate]="isIndeterminate()"
+      [checked]="isChecked()"
+      (click)="$event.stopPropagation()"
+      (change)="toggleSelectAll($event.checked)"
+      color="primary"
+    >
+    </mat-checkbox>
+    <div class="mat-list-option-label">
+      Select all
+    </div>
+  </div>
+
+  <mat-list-option
+    checkboxPosition="before"
+    *ngFor="let color of colors"
+    [value]="color.value"
+    [style.color]="color.value"
+  >
+    {{ color.label }}
+  </mat-list-option>
+</mat-selection-list>

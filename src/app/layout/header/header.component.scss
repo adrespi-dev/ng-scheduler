@@ -38,3 +38,29 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+.header-user {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #253342;
+  }
+
+  .header-user-avatar {
+    background: url(https://lh3.googleusercontent.com/-maahhisiVGo/AAAAAAAAAAI/AAAAAAAAAAA/AKF05nCp2tvWzLHdSzJgJtgXWaKoNyFBLQ.CMID/s83-c/photo.jpg);
+    height: 32px;
+    width: 32px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 12px;
+    border-radius: 50%;
+  }
+
+  .header-user-name {
+    font-size: 12px;
+  }
+}
