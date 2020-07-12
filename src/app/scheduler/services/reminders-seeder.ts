@@ -47,33 +47,33 @@ const getSeedData = () => [
   ),
   new Reminder(
     "League of Legends",
-    moment("7-14-2020 23:22", "MM-DD-YYYY HH:mm"),
+    moment("7-14-2020 08:16", "MM-DD-YYYY HH:mm"),
     "Istanbul",
-    DEFAULT_COLORS[2].value
+    DEFAULT_COLORS[0].value
   ),
   new Reminder(
-    "League of Legends",
-    moment("7-14-2020 23:22", "MM-DD-YYYY HH:mm"),
-    "Istanbul",
-    DEFAULT_COLORS[2].value
+    "Monster Hunter",
+    moment("7-14-2020 09:32", "MM-DD-YYYY HH:mm"),
+    "Bucharest",
+    DEFAULT_COLORS[5].value
   ),
   new Reminder(
-    "League of Legends",
-    moment("7-14-2020 23:22", "MM-DD-YYYY HH:mm"),
-    "Istanbul",
-    DEFAULT_COLORS[2].value
+    "Chrono trigger",
+    moment("7-14-2020 12:05", "MM-DD-YYYY HH:mm"),
+    "Dalian",
+    DEFAULT_COLORS[1].value
   ),
   new Reminder(
-    "League of Legends",
-    moment("7-14-2020 23:22", "MM-DD-YYYY HH:mm"),
-    "Istanbul",
-    DEFAULT_COLORS[2].value
+    "Resident Evil",
+    moment("7-14-2020 16:04", "MM-DD-YYYY HH:mm"),
+    "Hamburg",
+    DEFAULT_COLORS[4].value
   ),
   new Reminder(
-    "League of Legends",
+    "Dota",
     moment("7-14-2020 23:22", "MM-DD-YYYY HH:mm"),
-    "Istanbul",
-    DEFAULT_COLORS[2].value
+    "Shantou",
+    DEFAULT_COLORS[3].value
   ),
 ];
 

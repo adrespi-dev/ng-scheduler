@@ -32,14 +32,13 @@ export class RemindersService {
   }
 
   setNewRemindersList(newList: Reminder[]) {
-    this._reminders$.next(
-      newList.sort((a, b) => {
-        const sortingByDate =
-          b.dateTime.milliseconds() - a.dateTime.milliseconds();
-        const sortingById = b.id - a.id;
-        return sortingByDate || sortingById;
-      })
-    );
+    const sorted = newList.sort((a, b) => {
+      const sortingByDate = a.dateTime.unix() - b.dateTime.unix();
+      const sortingById = a.id - b.id;
+      return sortingByDate || sortingById;
+    });
+    console.log(sorted);
+    this._reminders$.next(sorted);
   }
 
   createNewReminder(reminder: ReminderDTO): Observable<boolean> {
