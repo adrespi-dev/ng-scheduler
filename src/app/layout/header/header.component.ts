@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CurrentDateService } from "src/app/scheduler/services/current-date.service";
 import * as moment from "moment";
+import { RemindersFilteringService } from "src/app/scheduler/services/reminders-filtering.service";
 
 @Component({
   selector: "app-header",
@@ -8,7 +9,13 @@ import * as moment from "moment";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public cdService: CurrentDateService) {}
+  searchBarFocused = false;
+  searchTerm: string = null;
+
+  constructor(
+    public cdService: CurrentDateService,
+    private filteringService: RemindersFilteringService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -22,5 +29,14 @@ export class HeaderComponent implements OnInit {
 
   handleTodayClick() {
     this.cdService.setNewDate(moment());
+  }
+
+  clearSearchBar() {
+    this.searchTerm = null;
+    this.handleSearchTermChanged();
+  }
+
+  handleSearchTermChanged() {
+    this.filteringService.setNewSearchTerm(this.searchTerm);
   }
 }

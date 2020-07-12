@@ -10,9 +10,9 @@ export default class Reminder {
   forecast: Forecast;
 
   constructor(
-    public title,
+    public title: string,
     public dateTime: moment.Moment,
-    public city,
+    public city: string,
     public color: string
   ) {
     this.id = new Date().getTime();

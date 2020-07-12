@@ -30,6 +30,43 @@
 
     <div class="fx-spacer"></div>
 
+    <div
+      class="header-searchbar"
+      [class.is-open]="searchBarFocused || searchTerm"
+    >
+      <input
+        #searchBar
+        name="searchTerm"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="handleSearchTermChanged()"
+        class="header-searchbar-input"
+        (focus)="searchBarFocused = true"
+        (blur)="searchBarFocused = false"
+        autocomplete="off"
+      />
+      <i-feather class="header-searchbar-search-icon" name="search"></i-feather>
+
+      <button
+        *ngIf="searchTerm"
+        class="header-searchbar-close-icon sm-size"
+        mat-icon-button
+        (click)="clearSearchBar()"
+      >
+        <i-feather name="x"></i-feather>
+      </button>
+    </div>
+
+    <a
+      href="https://github.com/adrespi-dev/ng-scheduler"
+      target="_blank"
+      class="header-btn-after sm-size"
+      mat-icon-button
+    >
+      <i-feather name="github"></i-feather>
+    </a>
+
+    <div class="header-separator"></div>
+
     <div class="header-user">
       <div class="header-user-avatar"></div>
       <div class="header-user-name">Adrián Espinoza</div>

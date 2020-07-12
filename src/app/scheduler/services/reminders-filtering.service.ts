@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import Reminder from "../models/reminder";
 
 interface ReminderFilter {
+  searchTerm: string;
   colors: string[];
   cities: string[];
 }
@@ -14,6 +15,7 @@ interface ReminderFilter {
 })
 export class RemindersFilteringService {
   private _filter$ = new BehaviorSubject<ReminderFilter>({
+    searchTerm: null,
     colors: null,
     cities: null,
   });
@@ -35,9 +37,24 @@ export class RemindersFilteringService {
           filtered = reminders.filter((r) => filter.cities.includes(r.city));
         }
 
+        if (filter.searchTerm) {
+          const search = filter.searchTerm.toLowerCase();
+          filtered = reminders.filter((r) => {
+            const title = r.title.toLowerCase();
+            const city = r.city.toLowerCase();
+            return title.includes(search) || city.includes(search);
+          });
+        }
+
         return filtered;
       })
     );
+  }
+
+  setNewSearchTerm(searchTerm: string) {
+    const newFilter = { ...this._filter$.value };
+    newFilter.searchTerm = searchTerm;
+    this._filter$.next(newFilter);
   }
 
   setNewColors(colors: string[]) {

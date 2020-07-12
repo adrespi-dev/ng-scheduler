@@ -19,7 +19,6 @@ export class MiniCalendarComponent implements OnInit, OnDestroy {
     this.currentDateSub = this.cdService.currentDate$.subscribe(
       (incomingDate) => {
         if (!incomingDate.isSame(this.activeDate, "month")) {
-          console.log("LOL");
           this.miniCalendar._goToDateInView(incomingDate.toDate(), "month");
         }
         this.activeDate = incomingDate.toDate();

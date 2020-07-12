@@ -11,6 +11,8 @@ import {
   Edit2,
   Trash,
   X,
+  Github,
+  Search,
 } from "angular-feather/icons";
 
 const icons = {
@@ -24,6 +26,8 @@ const icons = {
   Edit2,
   Trash,
   X,
+  Github,
+  Search,
 };
 
 @NgModule({
