@@ -20,3 +20,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 - **helpful-decorators**: For the throttle and debounce decorators used on this project.
 - **mmemoizee**: Improve performance by caching results.
 - **ngx-color-picker**: Color Picker widget.
+
+## Notes
+
+- You can use the mouse wheel to navigate between months
