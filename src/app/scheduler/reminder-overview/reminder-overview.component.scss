@@ -104,3 +104,9 @@
     font-size: 13px;
   }
 }
+
+@media (max-width: 645px) {
+  .reminder-overview-wrapper {
+    width: calc(100vw - 60px);
+  }
+}

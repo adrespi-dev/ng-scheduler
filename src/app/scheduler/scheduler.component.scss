@@ -49,3 +49,9 @@
   overflow: hidden;
   position: relative;
 }
+
+@media (max-width: 640px) {
+  .scheduler-sidebar {
+    display: none;
+  }
+}

@@ -19,10 +19,7 @@
   font-weight: 700;
   font-size: 1.25rem;
   color: #ff7a59;
-}
-
-.app-header-today {
-  margin-left: 46px;
+  margin-right: 46px;
 }
 
 .app-header-btn-group {
@@ -136,5 +133,24 @@
 
   .header-user-name {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 770px) {
+  .app-header-branding,
+  .header-user,
+  .header-separator {
+    display: none;
+  }
+}
+
+@media (max-width: 465px) {
+  .app-header-btn-group,
+  .header-repo-btn {
+    display: none;
+  }
+
+  .header-searchbar.is-open input {
+    width: calc(100vw - 26px);
   }
 }

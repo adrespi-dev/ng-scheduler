@@ -12,3 +12,14 @@
     margin-right: 12px;
   }
 }
+
+@media (max-width: 645px) {
+  .cdk-overlay-pane {
+    right: 0 !important;
+    left: 0;
+  }
+
+  .sat-popover-container.sat-popover-before {
+    margin: 0 auto;
+  }
+}
