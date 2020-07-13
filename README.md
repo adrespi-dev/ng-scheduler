@@ -35,4 +35,4 @@ This app was tested and it's working correctly in the folowing browsers.
 
 ## Notes
 
-- You can use the mouse wheel to navigate between months
+- Once you are in the app, you can use the mouse wheel on the calendar to navigate between months.
