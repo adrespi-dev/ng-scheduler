@@ -21,6 +21,18 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 - **mmemoizee**: Improve performance by caching results.
 - **ngx-color-picker**: Color Picker widget.
 
+## Live Demo
+
+[Click here](https://ng-scheduler.vercel.app/) to check the live demo of this app.
+
+## Browser Compatibility
+
+This app was tested and it's working correctly in the folowing browsers.
+
+| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.githubusercontent.com/alrra/browser-logos/main/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Latest ✔                                                                                            | Latest ✔                                                                                               | Latest ✔                                                                                      | +11 ✔                                                                                                                                 |
+
 ## Notes
 
 - You can use the mouse wheel to navigate between months
