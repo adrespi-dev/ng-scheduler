@@ -30,16 +30,16 @@ export class RemindersFilteringService {
       map(([filter, reminders]) => {
         let filtered = reminders;
         if (filter.colors) {
-          filtered = reminders.filter((r) => filter.colors.includes(r.color));
+          filtered = filtered.filter((r) => filter.colors.includes(r.color));
         }
 
         if (filter.cities) {
-          filtered = reminders.filter((r) => filter.cities.includes(r.city));
+          filtered = filtered.filter((r) => filter.cities.includes(r.city));
         }
 
         if (filter.searchTerm) {
           const search = filter.searchTerm.toLowerCase();
-          filtered = reminders.filter((r) => {
+          filtered = filtered.filter((r) => {
             const title = r.title.toLowerCase();
             const city = r.city.toLowerCase();
             return title.includes(search) || city.includes(search);
