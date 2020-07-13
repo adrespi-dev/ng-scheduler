@@ -2,13 +2,7 @@
   Filter By City
 </div>
 
-<mat-selection-list
-  #citiesList
-  [(ngModel)]="selectedCities"
-  (ngModelChange)="handleSelectionChanged()"
-  color="primary"
-  #colorsList
->
+<div class="mat-selection-list-wrapper">
   <div
     class="mat-list-option option-select-all"
     (click)="$event.stopPropagation(); toggleSelectAll(!selectAll.checked)"
@@ -28,11 +22,19 @@
     </div>
   </div>
 
-  <mat-list-option
-    checkboxPosition="before"
-    *ngFor="let city of cities"
-    [value]="city"
+  <mat-selection-list
+    #citiesList
+    [(ngModel)]="selectedCities"
+    (ngModelChange)="handleSelectionChanged()"
+    color="primary"
+    #colorsList
   >
-    {{ city }}
-  </mat-list-option>
-</mat-selection-list>
+    <mat-list-option
+      checkboxPosition="before"
+      *ngFor="let city of cities"
+      [value]="city"
+    >
+      {{ city }}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

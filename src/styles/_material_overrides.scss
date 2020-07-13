@@ -186,7 +186,7 @@ body .mat-list-base {
   padding-top: 0px;
 }
 
-mat-selection-list {
+.mat-selection-list-wrapper {
   overflow: auto;
   height: calc(100% - 50px);
 }
@@ -205,20 +205,31 @@ mat-selection-list {
   }
 }
 
-.mat-list-base .mat-list-option.option-select-all {
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
+.mat-selection-list-wrapper {
+  .mat-list-option.option-select-all {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 36px;
+    font-weight: 600;
+    color: inherit;
+    font-family: inherit;
 
-  .mat-checkbox-indeterminate.mat-primary,
-  .mat-checkbox-checked.mat-primary {
-    .mat-checkbox-background {
-      background-color: #2e3f50;
+    .mat-checkbox-inner-container {
+      width: 18px;
+      height: 18px;
     }
-  }
 
-  .mat-checkbox {
-    margin-right: 18px;
-    padding: 0 0px;
+    .mat-checkbox-indeterminate.mat-primary,
+    .mat-checkbox-checked.mat-primary {
+      .mat-checkbox-background {
+        background-color: #2e3f50;
+      }
+    }
+
+    .mat-checkbox {
+      margin-right: 18px;
+      padding: 0 0px;
+    }
   }
 }
