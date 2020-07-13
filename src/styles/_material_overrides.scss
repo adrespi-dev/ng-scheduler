@@ -132,6 +132,28 @@
   }
 }
 
+.mat-autocomplete-panel {
+  margin-left: -12px;
+
+  .mat-option {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: inherit;
+    height: 34px;
+
+    &.mat-option:hover:not(.mat-option-disabled) {
+      color: #185abc;
+      background-color: #d2e3fc;
+    }
+
+    &.mat-active {
+      background-color: #1a73e8 !important;
+      color: #fff !important;
+    }
+  }
+}
+
 /**
 Calendars
 */
