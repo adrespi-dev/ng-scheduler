@@ -16,7 +16,7 @@ export class WeatherForecastService {
   }
 
   getForecastByCityName(cityName: string): Observable<Forecast> {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${environment.openWeatherApiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${environment.openWeatherApiKey}`;
 
     return this.http.get(url).pipe(
       map((result: any) => {
@@ -26,7 +26,7 @@ export class WeatherForecastService {
           id: weather.id,
           main: weather.main,
           description: weather.description,
-          icon: `http://openweathermap.org/img/wn/${weather.icon}@2x.png`,
+          icon: `https://openweathermap.org/img/wn/${weather.icon}@2x.png`,
           humidity: main.humidity,
           temp: main.temp,
           tempMax: main.temp_max,
