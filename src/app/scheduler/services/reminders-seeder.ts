@@ -8,7 +8,7 @@ const getSeedData = () => [
   new Reminder(
     "She cried diamonds",
     moment(
-      `${now.getMonth()}-2-${now.getFullYear()} 13:20`,
+      `${now.getMonth() + 1}-2-${now.getFullYear()} 13:20`,
       "MM-DD-YYYY HH:mm"
     ),
     "Guayaquil",
@@ -17,7 +17,7 @@ const getSeedData = () => [
   new Reminder(
     "Dont step on the broken glass",
     moment(
-      `${now.getMonth()}-3-${now.getFullYear()} 14:15`,
+      `${now.getMonth() + 1}-3-${now.getFullYear()} 14:15`,
       "MM-DD-YYYY HH:mm"
     ),
     "Quito",
@@ -26,7 +26,7 @@ const getSeedData = () => [
   new Reminder(
     "Deep dive down the rabbit hole",
     moment(
-      `${now.getMonth()}-4-${now.getFullYear()} 08:15`,
+      `${now.getMonth() + 1}-4-${now.getFullYear()} 08:15`,
       "MM-DD-YYYY HH:mm"
     ),
     "London",
@@ -35,7 +35,7 @@ const getSeedData = () => [
   new Reminder(
     "Final Fantasy Vii",
     moment(
-      `${now.getMonth()}-6-${now.getFullYear()} 10:12`,
+      `${now.getMonth() + 1}-6-${now.getFullYear()} 10:12`,
       "MM-DD-YYYY HH:mm"
     ),
     "New York",
@@ -44,7 +44,7 @@ const getSeedData = () => [
   new Reminder(
     "Kingdom Hearts III",
     moment(
-      `${now.getMonth()}-6-${now.getFullYear()} 12:08`,
+      `${now.getMonth() + 1}-6-${now.getFullYear()} 12:08`,
       "MM-DD-YYYY HH:mm"
     ),
     "Miami",
@@ -53,7 +53,7 @@ const getSeedData = () => [
   new Reminder(
     "Super Mario",
     moment(
-      `${now.getMonth()}-10-${now.getFullYear()} 15:45`,
+      `${now.getMonth() + 1}-10-${now.getFullYear()} 15:45`,
       "MM-DD-YYYY HH:mm"
     ),
     "Cuenca",
@@ -62,7 +62,7 @@ const getSeedData = () => [
   new Reminder(
     "Dissidia Final Fantasy",
     moment(
-      `${now.getMonth()}-13-${now.getFullYear()} 16:19`,
+      `${now.getMonth() + 1}-13-${now.getFullYear()} 16:19`,
       "MM-DD-YYYY HH:mm"
     ),
     "Moscow",
@@ -71,7 +71,7 @@ const getSeedData = () => [
   new Reminder(
     "League of Legends",
     moment(
-      `${now.getMonth()}-14-${now.getFullYear()} 08:16`,
+      `${now.getMonth() + 1}-14-${now.getFullYear()} 08:16`,
       "MM-DD-YYYY HH:mm"
     ),
     "Istanbul",
@@ -80,7 +80,7 @@ const getSeedData = () => [
   new Reminder(
     "Monster Hunter",
     moment(
-      `${now.getMonth()}-14-${now.getFullYear()} 09:32`,
+      `${now.getMonth() + 1}-14-${now.getFullYear()} 09:32`,
       "MM-DD-YYYY HH:mm"
     ),
     "Bucharest",
@@ -89,7 +89,7 @@ const getSeedData = () => [
   new Reminder(
     "Chrono trigger",
     moment(
-      `${now.getMonth()}-14-${now.getFullYear()} 12:05`,
+      `${now.getMonth() + 1}-14-${now.getFullYear()} 12:05`,
       "MM-DD-YYYY HH:mm"
     ),
     "Dalian",
@@ -98,7 +98,7 @@ const getSeedData = () => [
   new Reminder(
     "Resident Evil",
     moment(
-      `${now.getMonth()}-14-${now.getFullYear()} 16:04`,
+      `${now.getMonth() + 1}-14-${now.getFullYear()} 16:04`,
       "MM-DD-YYYY HH:mm"
     ),
     "Hamburg",
@@ -107,7 +107,7 @@ const getSeedData = () => [
   new Reminder(
     "Dota",
     moment(
-      `${now.getMonth()}-14-${now.getFullYear()} 23:22`,
+      `${now.getMonth() + 1}-14-${now.getFullYear()} 23:22`,
       "MM-DD-YYYY HH:mm"
     ),
     "Shantou",
